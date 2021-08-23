@@ -6,8 +6,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/99designs/gqlgen/client"
-	"github.com/99designs/gqlgen/graphql/handler"
+	"github.com/00security/gqlgen/client"
+	"github.com/00security/gqlgen/graphql/handler"
 )
 
 func TestOk(t *testing.T) {

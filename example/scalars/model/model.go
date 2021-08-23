@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/99designs/gqlgen/example/scalars/external"
-	"github.com/99designs/gqlgen/graphql"
+	"github.com/00security/gqlgen/example/scalars/external"
+	"github.com/00security/gqlgen/graphql"
 )
 
 type Banned bool

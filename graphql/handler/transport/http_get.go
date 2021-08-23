@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/99designs/gqlgen/graphql"
-	"github.com/99designs/gqlgen/graphql/errcode"
+	"github.com/00security/gqlgen/graphql"
+	"github.com/00security/gqlgen/graphql/errcode"
 	"github.com/vektah/gqlparser/v2/ast"
 	"github.com/vektah/gqlparser/v2/gqlerror"
 )

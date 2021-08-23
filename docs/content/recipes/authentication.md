@@ -77,9 +77,9 @@ package main
 import (
 	"net/http"
 
-	"github.com/99designs/gqlgen/example/starwars"
-	"github.com/99designs/gqlgen/graphql/handler"
-	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/00security/gqlgen/example/starwars"
+	"github.com/00security/gqlgen/graphql/handler"
+	"github.com/00security/gqlgen/graphql/playground"
 	"github.com/go-chi/chi"
 )
 
