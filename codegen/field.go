@@ -142,9 +142,11 @@ func (b *builder) bindField(obj *Object, f *Field) (errret error) {
 			return err
 		}
 	case *types.Signature:
+		fmt.Println("bindField - *types.Signature")
 		spew.Dump(v)
 	default:
-		return fmt.Errorf("Unknown type")
+		fmt.Println("bindField - default")
+		spew.Dump(v)
 	}
 
 	pos := b.Binder.ObjectPosition(target)
