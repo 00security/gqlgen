@@ -5,6 +5,8 @@ import (
 	"io"
 	"strconv"
 	"time"
+
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func MarshalTime(t time.Time) Marshaler {
@@ -18,8 +20,11 @@ func MarshalTime(t time.Time) Marshaler {
 }
 
 func UnmarshalTime(v interface{}) (time.Time, error) {
-	if tmpStr, ok := v.(string); ok {
-		return time.Parse(time.RFC3339, tmpStr)
+	switch v := v.(type) {
+	case string:
+		return time.Parse(time.RFC3339, v)
+	case *timestamppb.Timestamp:
+		return v.Value
 	}
 	return time.Time{}, errors.New("time should be RFC3339 formatted string")
 }

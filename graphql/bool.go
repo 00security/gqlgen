@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"io"
 	"strings"
+
+	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 func MarshalBoolean(b bool) Marshaler {
@@ -24,6 +26,8 @@ func UnmarshalBoolean(v interface{}) (bool, error) {
 		return v != 0, nil
 	case bool:
 		return v, nil
+	case *wrapperspb.Bool:
+		return v.Value, nil
 	default:
 		return false, fmt.Errorf("%T is not a bool", v)
 	}
