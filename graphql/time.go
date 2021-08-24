@@ -24,7 +24,7 @@ func UnmarshalTime(v interface{}) (time.Time, error) {
 	case string:
 		return time.Parse(time.RFC3339, v)
 	case *timestamppb.Timestamp:
-		return v.Value
+		return v.AsTime(), nil
 	}
 	return time.Time{}, errors.New("time should be RFC3339 formatted string")
 }
