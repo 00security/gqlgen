@@ -28,6 +28,7 @@ type Config struct {
 	Directives               map[string]DirectiveConfig `yaml:"directives,omitempty"`
 	OmitSliceElementPointers bool                       `yaml:"omit_slice_element_pointers,omitempty"`
 	SkipValidation           bool                       `yaml:"skip_validation,omitempty"`
+	SkipTidy				 bool						`yaml:"skip_tidy,omitempty"`
 	Sources                  []*ast.Source              `yaml:"-"`
 	Packages                 *code.Packages             `yaml:"-"`
 	Schema                   *ast.Schema                `yaml:"-"`
@@ -46,6 +47,7 @@ func DefaultConfig() *Config {
 		Exec:           PackageConfig{Filename: "generated.go"},
 		Directives:     map[string]DirectiveConfig{},
 		Models:         TypeMap{},
+		SkipTidy: 		false,
 	}
 }
 
