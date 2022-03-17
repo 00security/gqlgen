@@ -5,7 +5,7 @@ package fileupload
 import (
 	"context"
 
-	"github.com/00security/gqlgen/example/fileupload/model"
+	"github.com/00security/gqlgen/_examples/fileupload/model"
 	"github.com/00security/gqlgen/graphql"
 )
 

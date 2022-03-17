@@ -3,7 +3,7 @@
 package model
 
 import (
-	"github.com/00security/gqlgen/example/scalars/external"
+	"github.com/00security/gqlgen/_examples/scalars/external"
 )
 
 type Address struct {

@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	todo "github.com/00security/gqlgen/example/config"
+	todo "github.com/00security/gqlgen/_examples/config"
 	"github.com/00security/gqlgen/graphql/handler"
 	"github.com/00security/gqlgen/graphql/playground"
 )

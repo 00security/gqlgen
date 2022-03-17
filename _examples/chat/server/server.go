@@ -11,7 +11,7 @@ import (
 
 	"github.com/00security/gqlgen/graphql/playground"
 
-	"github.com/00security/gqlgen/example/chat"
+	"github.com/00security/gqlgen/_examples/chat"
 	"github.com/00security/gqlgen/graphql/handler"
 	"github.com/gorilla/websocket"
 	"github.com/opentracing/opentracing-go"

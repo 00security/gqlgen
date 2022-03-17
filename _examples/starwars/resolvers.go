@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/00security/gqlgen/example/starwars/generated"
+	"github.com/00security/gqlgen/_examples/starwars/generated"
 
-	"github.com/00security/gqlgen/example/starwars/models"
+	"github.com/00security/gqlgen/_examples/starwars/models"
 )
 
 type Resolver struct {

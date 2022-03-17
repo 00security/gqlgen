@@ -12,7 +12,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/00security/gqlgen/example/starwars/models"
+	"github.com/00security/gqlgen/_examples/starwars/models"
 	"github.com/00security/gqlgen/graphql"
 	"github.com/00security/gqlgen/graphql/introspection"
 	gqlparser "github.com/vektah/gqlparser/v2"

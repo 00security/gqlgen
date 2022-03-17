@@ -423,7 +423,7 @@ func (ec *executionContext) _MyMutation_createTodo(ctx context.Context, field gr
 		if data, ok := tmp.(*Todo); ok {
 			return data, nil
 		}
-		return nil, fmt.Errorf(`unexpected type %T from directive, should be *github.com/00security/gqlgen/example/type-system-extension.Todo`, tmp)
+		return nil, fmt.Errorf(`unexpected type %T from directive, should be *github.com/00security/gqlgen/_examples/type-system-extension.Todo`, tmp)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -478,7 +478,7 @@ func (ec *executionContext) _MyQuery_todos(ctx context.Context, field graphql.Co
 		if data, ok := tmp.([]*Todo); ok {
 			return data, nil
 		}
-		return nil, fmt.Errorf(`unexpected type %T from directive, should be []*github.com/00security/gqlgen/example/type-system-extension.Todo`, tmp)
+		return nil, fmt.Errorf(`unexpected type %T from directive, should be []*github.com/00security/gqlgen/_examples/type-system-extension.Todo`, tmp)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -540,7 +540,7 @@ func (ec *executionContext) _MyQuery_todo(ctx context.Context, field graphql.Col
 		if data, ok := tmp.(*Todo); ok {
 			return data, nil
 		}
-		return nil, fmt.Errorf(`unexpected type %T from directive, should be *github.com/00security/gqlgen/example/type-system-extension.Todo`, tmp)
+		return nil, fmt.Errorf(`unexpected type %T from directive, should be *github.com/00security/gqlgen/_examples/type-system-extension.Todo`, tmp)
 	})
 	if err != nil {
 		ec.Error(ctx, err)

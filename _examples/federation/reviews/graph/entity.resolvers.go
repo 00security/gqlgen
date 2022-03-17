@@ -6,6 +6,7 @@ package graph
 import (
 	"context"
 
+	model1 "github.com/00security/gqlgen/_examples/federation/accounts/graph/model"
 	"github.com/00security/gqlgen/_examples/federation/reviews/graph/generated"
 	"github.com/00security/gqlgen/_examples/federation/reviews/graph/model"
 )
@@ -27,7 +28,7 @@ func (r *entityResolver) FindProductByManufacturerIDAndID(ctx context.Context, m
 	}, nil
 }
 
-func (r *entityResolver) FindUserByID(ctx context.Context, id string) (*model.User, error) {
+func (r *entityResolver) FindUserByID(ctx context.Context, id string) (*model1.User, error) {
 	return &model.User{
 		ID:   id,
 		Host: &model.EmailHost{},

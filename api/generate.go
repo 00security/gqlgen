@@ -83,7 +83,6 @@ func Generate(cfg *config.Config, option ...Option) error {
 			return fmt.Errorf("tidy failed: %w", err)
 		}
 	}
-}
 
 	for _, p := range plugins {
 		if mut, ok := p.(plugin.CodeGenerator); ok {

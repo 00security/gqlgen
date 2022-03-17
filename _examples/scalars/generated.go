@@ -11,8 +11,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/00security/gqlgen/example/scalars/external"
-	"github.com/00security/gqlgen/example/scalars/model"
+	"github.com/00security/gqlgen/_examples/scalars/external"
+	"github.com/00security/gqlgen/_examples/scalars/model"
 	"github.com/00security/gqlgen/graphql"
 	"github.com/00security/gqlgen/graphql/introspection"
 	gqlparser "github.com/vektah/gqlparser/v2"

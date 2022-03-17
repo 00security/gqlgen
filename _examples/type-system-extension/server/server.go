@@ -7,7 +7,7 @@ import (
 
 	"github.com/00security/gqlgen/graphql/playground"
 
-	extension "github.com/00security/gqlgen/example/type-system-extension"
+	extension "github.com/00security/gqlgen/_examples/type-system-extension"
 	"github.com/00security/gqlgen/graphql/handler"
 )
 

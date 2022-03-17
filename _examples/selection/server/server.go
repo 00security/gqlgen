@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/00security/gqlgen/example/selection"
+	"github.com/00security/gqlgen/_examples/selection"
 	"github.com/00security/gqlgen/graphql/handler"
 	"github.com/00security/gqlgen/graphql/playground"
 )

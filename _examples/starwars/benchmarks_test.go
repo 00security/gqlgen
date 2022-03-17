@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/00security/gqlgen/example/starwars/generated"
+	"github.com/00security/gqlgen/_examples/starwars/generated"
 	"github.com/00security/gqlgen/graphql/handler"
 )
 

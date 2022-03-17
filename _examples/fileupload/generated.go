@@ -10,7 +10,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/00security/gqlgen/example/fileupload/model"
+	"github.com/00security/gqlgen/_examples/fileupload/model"
 	"github.com/00security/gqlgen/graphql"
 	"github.com/00security/gqlgen/graphql/introspection"
 	gqlparser "github.com/vektah/gqlparser/v2"

@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/00security/gqlgen/example/federation/products/graph"
-	"github.com/00security/gqlgen/example/federation/products/graph/generated"
+	"github.com/00security/gqlgen/_examples/federation/products/graph"
+	"github.com/00security/gqlgen/_examples/federation/products/graph/generated"
 	"github.com/00security/gqlgen/graphql/handler"
 	"github.com/00security/gqlgen/graphql/handler/debug"
 	"github.com/00security/gqlgen/graphql/playground"

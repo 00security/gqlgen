@@ -46,7 +46,7 @@ func DefaultConfig() *Config {
 		Exec:           ExecConfig{Filename: "generated.go"},
 		Directives:     map[string]DirectiveConfig{},
 		Models:         TypeMap{},
-		SkipTidy:       false,
+		SkipModTidy:    false,
 	}
 }
 
