@@ -1,0 +1,3 @@
+models:
+  Chatroom:
+    model: github.com/00security/gqlgen/_examples/chat.Chatroom

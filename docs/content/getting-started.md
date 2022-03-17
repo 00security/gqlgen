@@ -14,16 +14,40 @@ This tutorial will take you through the process of building a GraphQL server wit
 
 You can find the finished code for this tutorial [here](https://github.com/vektah/gqlgen-tutorials/tree/master/gettingstarted)
 
-## Setup Project
+## Set up Project
 
-Create a directory for your project, and initialise it as a Go Module:
+Create a directory for your project, and [initialise it as a Go Module](https://golang.org/doc/tutorial/create-module):
 
-```sh
-$ mkdir gqlgen-todos
-$ cd gqlgen-todos
-$ go mod init github.com/[username]/gqlgen-todos
-$ go get github.com/00security/gqlgen
+```shell
+mkdir gqlgen-todos
+cd gqlgen-todos
+go mod init github.com/[username]/gqlgen-todos
 ```
+
+Next, create a `tools.go` file and add gqlgen as a [tool dependency for your module](https://github.com/golang/go/wiki/Modules#how-can-i-track-tool-dependencies-for-a-module).
+
+```go
+//go:build tools
+// +build tools
+
+package tools
+
+import (
+	_ "github.com/00security/gqlgen"
+)
+```
+
+To automatically add the dependency to your `go.mod` run
+```shell
+go mod tidy
+```
+
+By default you'll be using the latest version of gqlgen, but if you want to specify a particular version you can use `go get` (replacing `VERSION` with the particular version desired)
+```shell
+go get -d github.com/00security/gqlgen@VERSION
+```
+
+
 
 ## Building the server
 
@@ -53,7 +77,7 @@ This will create our suggested package layout. You can modify these paths in gql
 
 gqlgen is a schema-first library — before writing code, you describe your API using the GraphQL
 [Schema Definition Language](http://graphql.org/learn/schema/). By default this goes into a file called
-`schema.graphql` but you can break it up into as many different files as you want.
+`schema.graphqls` but you can break it up into as many different files as you want.
 
 The schema that was generated for us was:
 ```graphql
@@ -86,7 +110,7 @@ type Mutation {
 ### Implement the resolvers
 
 When executed, gqlgen's `generate` command compares the schema file (`graph/schema.graphqls`) with the models `graph/model/*`, and, wherever it
-can, it will bind directly to the model.  That was done alread when `init` was run.  We'll edit the schema later in the tutorial, but for now, let's look at what was generated already. 
+can, it will bind directly to the model.  That was done already when `init` was run.  We'll edit the schema later in the tutorial, but for now, let's look at what was generated already.
 
 If we take a look in `graph/schema.resolvers.go` we will see all the times that gqlgen couldn't match them up. For us
 it was twice:
@@ -177,7 +201,7 @@ type Todo struct {
 	ID     string `json:"id"`
 	Text   string `json:"text"`
 	Done   bool   `json:"done"`
-	UserID string `json:"user"`
+	User   *User  `json:"user"`
 }
 ```
 
@@ -187,13 +211,16 @@ type Todo struct {
 
 And run `go run github.com/00security/gqlgen generate`.
 
+>
+> If you run into this error `package github.com/00security/gqlgen: no Go files` while executing the `generate` command above, follow the instructions in [this](https://github.com/00security/gqlgen/issues/800#issuecomment-888908950) comment for a possible solution.
+
 Now if we look in `graph/schema.resolvers.go` we can see a new resolver, lets implement it and fix `CreateTodo`.
 ```go
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
 	todo := &model.Todo{
 		Text:   input.Text,
 		ID:     fmt.Sprintf("T%d", rand.Int()),
-		UserID: input.UserID, // fix this line
+		User:   &model.User{ID: input.UserID, Name: "user " + input.UserID},
 	}
 	r.todos = append(r.todos, todo)
 	return todo, nil

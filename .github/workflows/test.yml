@@ -5,14 +5,14 @@ jobs:
   test:
     strategy:
       matrix:
-        go: [1.13, 1.14]
+        go: [1.16]
         os: [ubuntu-latest, windows-latest]
 
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go }}
-      - run: go mod download
-      - run: go test -race ./...
+      - run: go mod download && go test -race ./...
+      - run: cd _examples && go mod download && go test -race ./...

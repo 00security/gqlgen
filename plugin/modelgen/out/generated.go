@@ -8,6 +8,25 @@ import (
 	"strconv"
 )
 
+type A interface {
+	IsA()
+}
+
+type B interface {
+	IsB()
+}
+
+type C interface {
+	A
+	IsC()
+}
+
+type D interface {
+	A
+	B
+	IsD()
+}
+
 type FooBarer interface {
 	IsFooBarer()
 }
@@ -28,6 +47,25 @@ type MissingUnion interface {
 // UnionWithDescription is an union with a description
 type UnionWithDescription interface {
 	IsUnionWithDescription()
+}
+
+type CDImplemented struct {
+	A string  `json:"a" database:"CDImplementeda"`
+	B int     `json:"b" database:"CDImplementedb"`
+	C bool    `json:"c" database:"CDImplementedc"`
+	D *string `json:"d" database:"CDImplementedd"`
+}
+
+func (CDImplemented) IsC() {}
+func (CDImplemented) IsA() {}
+func (CDImplemented) IsD() {}
+func (CDImplemented) IsB() {}
+
+type FieldMutationHook struct {
+	Name     *string       `json:"name" anotherTag:"tag" database:"FieldMutationHookname"`
+	Enum     *ExistingEnum `json:"enum" yetAnotherTag:"12" database:"FieldMutationHookenum"`
+	NoVal    *string       `json:"noVal" yaml:"noVal" repeated:"true" database:"FieldMutationHooknoVal"`
+	Repeated *string       `json:"repeated" someTag:"value" repeated:"true" database:"FieldMutationHookrepeated"`
 }
 
 type MissingInput struct {

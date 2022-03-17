@@ -2,7 +2,13 @@
 
 set -euo pipefail
 
-cd example/init
+gqlgen_dir=$(pwd)
+cd $(mktemp -d)
+go mod init inittest
+printf '// +build tools\npackage tools\nimport _ "github.com/00security/gqlgen"' | gofmt > tools.go
+go mod tidy
+go mod edit -replace=github.com/00security/gqlgen="$gqlgen_dir"
+go mod tidy
 
 go get github.com/00security/gqlgen
 

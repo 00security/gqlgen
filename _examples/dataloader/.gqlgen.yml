@@ -1,0 +1,5 @@
+models:
+  Order:
+    model: github.com/00security/gqlgen/_examples/dataloader.Order
+  Customer:
+    model: github.com/00security/gqlgen/_examples/dataloader.Customer

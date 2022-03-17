@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	. "github.com/logrusorgru/aurora"
+	. "github.com/logrusorgru/aurora/v3"
 	"github.com/mattn/go-colorable"
 	"github.com/mattn/go-isatty"
 
@@ -67,5 +67,4 @@ func (a Tracer) InterceptResponse(ctx context.Context, next graphql.ResponseHand
 	fmt.Fprintln(a.out, "}")
 	fmt.Fprintln(a.out)
 	return resp
-
 }

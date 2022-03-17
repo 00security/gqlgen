@@ -15,7 +15,7 @@ func MarshalTime(t time.Time) Marshaler {
 	}
 
 	return WriterFunc(func(w io.Writer) {
-		io.WriteString(w, strconv.Quote(t.Format(time.RFC3339)))
+		io.WriteString(w, strconv.Quote(t.Format(time.RFC3339Nano)))
 	})
 }
 
@@ -26,5 +26,5 @@ func UnmarshalTime(v interface{}) (time.Time, error) {
 	case timestamppb.Timestamp:
 		return v.AsTime(), nil
 	}
-	return time.Time{}, errors.New("time should be RFC3339 formatted string")
+	return time.Time{}, errors.New("time should be RFC3339Nano formatted string")
 }

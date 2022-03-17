@@ -1,5 +1,0 @@
-type User
-@goModel(model:"github.com/00security/gqlgen/example/config.User") {
-  id: ID!
-  name: String! @goField(name:"FullName")
-}

@@ -1,6 +1,7 @@
 package templates
 
 import (
+	"fmt"
 	"go/types"
 	"os"
 	"testing"
@@ -45,6 +46,18 @@ func TestImports(t *testing.T) {
 		})
 	})
 
+	t.Run("duplicates above 10 are decollisioned", func(t *testing.T) {
+		a := Imports{destDir: wd, packages: &code.Packages{}}
+		for i := 0; i < 100; i++ {
+			cBar := fmt.Sprintf("github.com/00security/gqlgen/codegen/templates/testdata/%d/bar", i)
+			if i > 0 {
+				require.Equal(t, fmt.Sprintf("bar%d", i), a.Lookup(cBar))
+			} else {
+				require.Equal(t, "bar", a.Lookup(cBar))
+			}
+		}
+	})
+
 	t.Run("package name defined in code will be used", func(t *testing.T) {
 		a := Imports{destDir: wd, packages: &code.Packages{}}
 
@@ -75,5 +88,4 @@ turtles "github.com/00security/gqlgen/codegen/templates/testdata/pkg_mismatch"`,
 		require.Equal(t, `abar "github.com/00security/gqlgen/codegen/templates/testdata/a/bar"
 bbar "github.com/00security/gqlgen/codegen/templates/testdata/b/bar"`, a.String())
 	})
-
 }

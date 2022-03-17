@@ -17,7 +17,8 @@ schema:
 
 # Where should the generated server code go?
 exec:
-  filename: graph/generated/generated.go
+  layout: follow-schema
+  dir: graph/generated
   package: generated
 
 # Enable Apollo federation support
@@ -46,10 +47,13 @@ resolver:
 # Optional: set to speed up generation time by not performing a final validation pass.
 # skip_validation: true
 
+# Optional: set to skip running `go mod tidy` when generating server code
+# skip_mod_tidy: true
+
 # gqlgen will search for any type names in the schema in these go packages
 # if they match it will use them, otherwise it will generate them.
-autobind:
-  - "github.com/your/app/graph/model"
+# autobind:
+#   - "github.com/[YOUR_APP_DIR]/graph/model"
 
 # This section declares type mapping between the GraphQL and go type systems
 #
@@ -80,15 +84,20 @@ gqlgen ships with some builtin directives that make it a little easier to manage
 To start using them you first need to define them:
 
 ```graphql
-directive @goModel(model: String, models: [String!]) on OBJECT
-    | INPUT_OBJECT
-    | SCALAR
-    | ENUM
-    | INTERFACE
-    | UNION
+directive @goModel(
+	model: String
+	models: [String!]
+) on OBJECT | INPUT_OBJECT | SCALAR | ENUM | INTERFACE | UNION
 
-directive @goField(forceResolver: Boolean, name: String) on INPUT_FIELD_DEFINITION
-    | FIELD_DEFINITION
+directive @goField(
+	forceResolver: Boolean
+	name: String
+) on INPUT_FIELD_DEFINITION | FIELD_DEFINITION
+
+directive @goTag(
+	key: String!
+	value: String
+) on INPUT_FIELD_DEFINITION | FIELD_DEFINITION
 ```
 
 > Here be dragons
@@ -100,7 +109,23 @@ Now you can use these directives when defining types in your schema:
 
 ```graphql
 type User @goModel(model: "github.com/my/app/models.User") {
-    id: ID!         @goField(name: "todoId")
-    name: String!   @goField(forceResolver: true)
+	id: ID! @goField(name: "todoId")
+	name: String!
+		@goField(forceResolver: true)
+		@goTag(key: "xorm", value: "-")
+		@goTag(key: "yaml")
 }
+```
+
+The builtin directives `goField`, `goModel` and `goTag` are automatically registered to `skip_runtime`. Any directives registered as `skip_runtime` will not exposed during introspection and are used during code generation only. 
+
+If you have created a new code generation plugin using a directive which does not require runtime execution, the directive will need to be set to `skip_runtime`.
+
+e.g. a custom directive called `constraint` would be set as `skip_runtime` using the following configuration
+```yml
+# custom directives which are not exposed during introspection. These directives are
+# used for code generation only
+directives:
+  constraint:
+    skip_runtime: true
 ```

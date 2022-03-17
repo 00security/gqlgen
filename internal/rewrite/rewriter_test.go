@@ -21,7 +21,7 @@ func TestRewriter(t *testing.T) {
 	m.Field++
 
 	// trailing comment
-`, strings.Replace(body, "\r\n", "\n", -1))
+`, strings.ReplaceAll(body, "\r\n", "\n"))
 
 		imps := r.ExistingImports("testdata/example.go")
 		require.Len(t, imps, 2)
@@ -35,7 +35,6 @@ func TestRewriter(t *testing.T) {
 				ImportPath: "bytes",
 			},
 		}, imps)
-
 	})
 
 	t.Run("out of scope dir", func(t *testing.T) {
