@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/00security/gqlgen/client"
-	"github.com/00security/gqlgen/codegen/testserver/otherpkg"
+	"github.com/00security/gqlgen/codegen/testserver/singlefile/otherpkg"
 	"github.com/00security/gqlgen/graphql/handler"
 	"github.com/stretchr/testify/require"
 )
